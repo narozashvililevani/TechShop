@@ -6,22 +6,25 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRoute from './routes/userR';
 import productRoute from './routes/productR';
+import path from 'path';
 
 dotenv.config();
 
 const mongodbUrl = config.MONGODB_URL;
 
-mongoose.connect(mongodbUrl, { 
+mongoose.connect(process.env.MONGODB_URI || mongodbUrl, { 
     useNewUrlParser: true,
     useUnifiedTopology: true 
 }).catch( e => console.log(e.reason));
-
+ 
 
 // express
 const app  = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(bodyParser.json());
 
-// Routese
+// Routes
 app.use('/api/users', userRoute );
 app.use('/api/products', productRoute );
 
@@ -42,6 +45,13 @@ app.use('/api/products', productRoute );
    
 // });
 
-const PORT = 5000 ;
+//  heroku setup 
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendfile(path.join(__dirname, 'client', 'build', 'index.html'));   // relative path
+    }  );
+}
 
 app.listen(PORT, () =>  console.log(`server started on ${PORT}`) ); 

@@ -4,7 +4,8 @@
   "description": "shopping site",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "levan narozashvili",
   "license": "ISC",
