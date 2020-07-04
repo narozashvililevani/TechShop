@@ -1,6 +1,6 @@
-import express from 'express';
-import Product from '../models/productM';
-import {isAuth, isAdmin} from '../utils'
+const express = require('express');
+const Product = require('../models/productM');
+const {isAuth, isAdmin} = require('../utils')
 const router = express.Router();
 
 // get all product
@@ -107,4 +107,4 @@ router.delete('/:id', isAuth, isAdmin, async (req, res) => {
 });
 
 
-export default router;
+module.exports = router;

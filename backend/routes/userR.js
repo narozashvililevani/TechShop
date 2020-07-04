@@ -1,6 +1,6 @@
-import express from 'express';
-import User from '../models/userM';
-import { getToken } from '../utils';
+const express = require('express');
+const User =  require('../models/userM');
+const { getToken } =  require('../utils');
 
 const router = express.Router();
 
@@ -73,4 +73,4 @@ router.get('/createadmin', async (req, res) => {
 
 
 
-export default router;
+module.exports =  router;

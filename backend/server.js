@@ -1,12 +1,11 @@
-import express from 'express';
-import data from './data';
-import dotenv from 'dotenv';
-import config from './config';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import userRoute from './routes/userR';
-import productRoute from './routes/productR';
-import path from 'path';
+const express = require('express')
+const dotenv = require('dotenv');
+const config = require('./config');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const userRoute = require('./routes/userR');
+const productRoute = require('./routes/productR');
+const path = require('path');
 
 dotenv.config();
 
